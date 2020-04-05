@@ -72,12 +72,41 @@
     };
 
     // and think we make a copy:
+      // const captain = person;
+      // captain.number = 99;
 
     // how do we take a copy instead?
+    const cap2 = Object.assign({}, person, { number: 99 });
+    console.log(cap2);
 
-    // We will hopefully soon see the object ...spread
+    // We will hopefully soon see the object ...spread (this is a react thing currently)
+    // const cap3 = {...person};
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    const jess = {
+      name: 'jessjess',
+      age: 100,
+      social: {
+        twitter: '@jecajoki',
+        instagram: '@jssckbl'
+      }
+    }
+    console.clear();
+    console.log(jess);
+
+    const dev = Object.assign({}, jess); // this only goes one level deep. if you try to change items
+    // in the object "social" it will change the original. you instead need a function called "cloneDeep"
+    // to clone every level, and will go as many levels deep as needed
+    // rarely do you need to clone an object to multiple depths
+
+    // the poor man's deep clone that is not recommended is as follows:
+    const dev2 = JSON.parse(JSON.stringify(jess));
+
+    // what happens above is that you take "JSON.stringify", pass it an object (jess), which then returns to 
+    // you a string- it is no longer an object. 
+    // THEN. you immediately JSON.parse it to turn it BACK into an object
+    // and then you finally have your full copy
 
   </script>
 
